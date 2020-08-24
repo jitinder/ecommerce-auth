@@ -18,9 +18,9 @@ import static com.example.demo.security.SecurityConstants.HEADER_STRING;
 import static com.example.demo.security.SecurityConstants.SECRET;
 import static com.example.demo.security.SecurityConstants.TOKEN_PREFIX;
 
-public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+public class JWTAuthenticationVerificationFilter extends BasicAuthenticationFilter {
 
-    public JWTAuthorizationFilter(AuthenticationManager authManager) {
+    public JWTAuthenticationVerificationFilter(AuthenticationManager authManager) {
         super(authManager);
     }
 

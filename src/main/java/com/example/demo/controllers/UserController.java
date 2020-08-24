@@ -42,7 +42,7 @@ public class UserController {
 		cartRepository.save(cart);
 		user.setCart(cart);
 		if(createUserRequest.getPassword().length() < 7 ||
-		createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())){
+		!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())){
 			System.out.println("Error in user given password!");
 			return ResponseEntity.badRequest().build();
 		}
