@@ -10,9 +10,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
+
+	private static final Logger log = Logger.getLogger("UserController");
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -44,10 +49,12 @@ public class UserController {
 		if(createUserRequest.getPassword().length() < 7 ||
 		!createUserRequest.getPassword().equals(createUserRequest.getConfirmPassword())){
 			System.out.println("Error in user given password!");
+			log.info("Error creating user: Invalid password credentials supplied for username "+createUserRequest.getUsername());
 			return ResponseEntity.badRequest().build();
 		}
 		user.setPassword(passwordEncoder.encode(createUserRequest.getPassword()));
 		userRepository.save(user);
+		log.info("Successfully created user: "+user.getUsername());
 		return ResponseEntity.ok(user);
 	}
 	

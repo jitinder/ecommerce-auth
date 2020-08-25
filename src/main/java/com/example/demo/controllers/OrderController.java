@@ -1,6 +1,8 @@
 package com.example.demo.controllers;
 
 import java.util.List;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +22,7 @@ import com.example.demo.model.persistence.repositories.UserRepository;
 @RestController
 @RequestMapping("/api/order")
 public class OrderController {
-	
+	private static final Logger log = Logger.getLogger("OrderController");
 	
 	@Autowired
 	private UserRepository userRepository;
